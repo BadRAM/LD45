@@ -1,24 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
-
+    [SerializeField] private List<EnemyWave> Waves; // Waves to spawn, Float = Time to spawn
+    private float _startTime;
+    [SerializeField] private float SpawnRadius;
+    [SerializeField] private float SpawnHeight;
+    
     // Start is called before the first frame update
     void Start()
     {
-        EnemyList.Enemies = new List<Enemy>();
+        _startTime = Time.time;
+        
+        GameInfo.Enemies = new List<Enemy>();
         foreach (Enemy e in FindObjectsOfType<Enemy>())
         {
-            EnemyList.Enemies.Append(e);
+            GameInfo.Enemies.Append(e);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        if (Waves.Count > 0 && Waves[0].Time < Time.time - _startTime)
+        {
+            for (int i = 0; i < Waves[0].Number; i++)
+            {
+                Vector2 spot = SpawnRadius * Random.insideUnitCircle;
+                Vector3 pos = transform.position + new Vector3(spot.x, spot.y, Random.Range(0, SpawnHeight));
+                Instantiate(Waves[0].EnemyType, pos, Quaternion.identity);
+            }
+
+            Waves.RemoveAt(0);
+        }
     }
 }

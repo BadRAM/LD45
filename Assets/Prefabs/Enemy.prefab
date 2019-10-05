@@ -173,8 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 5
-  _weapon: {fileID: 0}
-  _AI: {fileID: 1835163377}
   disableOnDeath: {fileID: 3173738624311210881}
   enableOnDeath: {fileID: 3482137390424696170}
 --- !u!114 &1835163377
@@ -189,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5187882b9d1fe164e97b28469029e71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireCooldown: 1
 --- !u!114 &413309777401159719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +208,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5320850263050402372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
