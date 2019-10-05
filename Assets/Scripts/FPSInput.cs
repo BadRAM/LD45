@@ -9,7 +9,7 @@ using System.Collections;
 public class FPSInput : MonoBehaviour
 {
     //This set of public variables is for movement speed
-    public float speed = 10.0f;
+    public float speed = 100.0f;
     float stopspeed = 0;// do not touch, responsible for stopping player
     float maxspeed = 10; // how fast to move
     float acceleration = 10; //how long to get to max speed
@@ -68,18 +68,18 @@ public class FPSInput : MonoBehaviour
             }
 
 
-    //        float deltaX = Input.GetAxis("Horizontal") * speed;
-  //          float deltaZ = Input.GetAxis("Vertical") * speed;
+            float deltaX = Input.GetAxis("Horizontal") * speed;
+            float deltaZ = Input.GetAxis("Vertical") * speed;
 
 
 
 
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
+  //          float horizontal = Input.GetAxis("Horizontal");
+//            float vertical = Input.GetAxis("Vertical");
 
 
 
-//            Vector3 movement = new Vector3(deltaX, 0, deltaZ);
+           Vector3 movement = new Vector3(deltaX, 0, deltaZ);
           //  Vector3 movement = new Vector3(horizontal*speed*Time.deltaTime, 0, transform.Translate("");
 
             movement = Vector3.ClampMagnitude(movement, speed);
