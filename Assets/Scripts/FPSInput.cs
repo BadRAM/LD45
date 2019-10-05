@@ -43,6 +43,8 @@ public class FPSInput : MonoBehaviour
 
     void Update()
     {
+        
+        // should this be in FixedUpdate?
         if (_canMove == true)
         {
             Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -102,8 +104,6 @@ public class FPSInput : MonoBehaviour
                 isRunning = false;
                 speed = normalSpeed; //When holding any other combos of keys, the speed value is set to the normal speed value
             }
-
-
         }
     }
 

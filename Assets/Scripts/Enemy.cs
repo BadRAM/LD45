@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(EnemyAI))]
 public class Enemy : MonoBehaviour
 {
 
     [SerializeField] private float Health;
     private NavMeshAgent _agent;
-    private EnemyWeapon _weapon;
-    private EnemyAI _AI;
+    [SerializeField] private EnemyWeapon _weapon;
+    [SerializeField] private EnemyAI _AI;
     private Vector3 _playerPos;
 
     // Start is called before the first frame update
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _agent.SetDestination(_playerPos);
+        //_agent.SetDestination(_playerPos);
     }
 
     public void Hurt(float damageTaken)
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        
         //activate death particles, disable functional bits.
     }
 }
