@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float fireCooldown = 1;
     private float _fireHeat;
     private Transform _playerTransform;
-    [SerializeField] private GameObject Projectile; 
+    [SerializeField] private GameObject projectile; 
     
     // default EnemyAI moves towards the player
     
@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
 
     private void _fire()
     {
-        Instantiate(Projectile, transform.position,
+        Instantiate(projectile, transform.position,
             Quaternion.LookRotation(_playerTransform.position - transform.position, transform.up));
         Debug.Log("Firing");
     }
