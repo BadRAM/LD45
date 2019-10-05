@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMouseCharacter : MonoBehaviour
 {
-    [SerializeField] private Vector3 defaultOffset = new Vector3(0, 10, -10);
+    private Vector3 defaultOffset;
     private Camera camera;
     private Vector3 offsetForOffset;
     [SerializeField] private float maxDistance = 3.0f; //This is to make the camera not go all the way to the mouse cursor position, tweak it until it feels right.
@@ -18,6 +18,7 @@ public class CameraMouseCharacter : MonoBehaviour
 
     void Start()
     {
+        defaultOffset = transform.localPosition;
         transform.parent = null;
         camera = GetComponent<Camera>();
     }

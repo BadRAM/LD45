@@ -27,7 +27,7 @@ public class Projectile : MonoBehaviour
         }
         
 
-        if (other.TryGetComponent(out Enemy e))
+        if (other.transform.parent.TryGetComponent(out Enemy e))
         {
             e.Hurt(Damage);
         }

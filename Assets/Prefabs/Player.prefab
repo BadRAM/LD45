@@ -96,9 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc69a90179129c640ba707ec41bc7559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultOffset: {x: 0, y: 10, z: -10}
   maxDistance: 15
-  scaleFactor: 5
+  scaleFactor: 10
   lookAt: {fileID: 2479616082993897156}
   castPlane: {fileID: 0}
   smooth: 1
