@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.AddForce(transform.forward * Speed);
+        _rigidbody.AddForce(transform.forward * Speed, ForceMode.VelocityChange);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,5 +31,7 @@ public class Projectile : MonoBehaviour
         {
             e.Hurt(Damage);
         }
+        
+        Destroy(gameObject);
     }
 }

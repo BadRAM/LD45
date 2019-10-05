@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - MouseCasting
+  - Projectile
+  - Player
+  - Enemy
   - 
   - 
   - 

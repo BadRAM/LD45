@@ -35,6 +35,8 @@ public class FPSInput : MonoBehaviour
 
     void Update()
     {
+        
+        // should this be in FixedUpdate?
         if (_canMove == true)
         {
             //Start of block of code related to regular movement
@@ -62,8 +64,6 @@ public class FPSInput : MonoBehaviour
                 isRunning = false;
                 speed = normalSpeed; //When holding any other combos of keys, the speed value is set to the normal speed value
             }
-
-
         }
     }
 
