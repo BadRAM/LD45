@@ -457,14 +457,6 @@ PrefabInstance:
       propertyPath: castPlane
       value: 
       objectReference: {fileID: 1199301739}
-    - target: {fileID: 963194229, guid: dcc61d2188737f3498b4c93d1b7d071b, type: 3}
-      propertyPath: defaultOffset.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 963194229, guid: dcc61d2188737f3498b4c93d1b7d071b, type: 3}
-      propertyPath: defaultOffset.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcc61d2188737f3498b4c93d1b7d071b, type: 3}
 --- !u!1001 &5320850264612922548
