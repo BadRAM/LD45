@@ -3,29 +3,44 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float fireCooldown = 1;
     private float _fireHeat;
     private Transform _playerTransform;
-    [SerializeField] private GameObject projectile; 
+    private EnemyWeapon _weapon;
+    private NavMeshAgent _agent;
+    private string _state;
+
+    // default EnemyAI moves towards the player and shoots at the same time. stops within 5m.
     
-    // default EnemyAI moves towards the player
-    
-    // Start is called before the first frame update
     void Start()
     {
         _playerTransform = GameObject.FindWithTag("Player").transform;
+        _weapon = GetComponent<EnemyWeapon>();
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     private void FixedUpdate()
     {
+        
+    }
+
+    public void Behavior()
+    {
+        if (Vector3.Distance(_playerTransform.position, transform.position) < 5)
+        {
+            _agent.SetDestination(transform.position);
+        }
+        
         if (_fireHeat == 0)
         {
             _fire();
             _fireHeat = fireCooldown;
+            _agent.SetDestination(_playerTransform.position);
         }
 
         _fireHeat = Mathf.Max(0, _fireHeat - Time.deltaTime);
@@ -33,8 +48,6 @@ public class EnemyAI : MonoBehaviour
 
     private void _fire()
     {
-        Instantiate(projectile, transform.position,
-            Quaternion.LookRotation(_playerTransform.position - transform.position, transform.up));
-        Debug.Log("Firing");
+        _weapon.Fire(_playerTransform.position);
     }
 }

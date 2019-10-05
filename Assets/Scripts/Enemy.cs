@@ -2,28 +2,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyAI))]
 public class Enemy : MonoBehaviour
 {
 
     [SerializeField] private float Health;
-    private NavMeshAgent _agent;
-    [SerializeField] private EnemyWeapon _weapon;
-    [SerializeField] private EnemyAI _AI;
-    private Vector3 _playerPos;
+    private EnemyWeapon _weapon;
+    private EnemyAI _AI;
+    private Transform _playerTransform;
+    [SerializeField]private GameObject disableOnDeath;
+    [SerializeField]private GameObject enableOnDeath;
 
     // Start is called before the first frame update
     void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
+        _weapon = GetComponent<EnemyWeapon>();
+        _AI = GetComponent<EnemyAI>();
     }
 
     private void FixedUpdate()
     {
-        //_agent.SetDestination(_playerPos);
+        if (Health > 0)
+        {
+            _AI.Behavior();
+        }
     }
 
     public void Hurt(float damageTaken)
@@ -37,7 +40,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        
-        //activate death particles, disable functional bits.
+        disableOnDeath.SetActive(false);
+        enableOnDeath.SetActive(true);
     }
 }
