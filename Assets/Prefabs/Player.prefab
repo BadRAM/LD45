@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  accelFactor: 0.05
+  accelFactor: 5
   gravity: 0
   runSpeed: 15
   normalSpeed: 6

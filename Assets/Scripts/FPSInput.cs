@@ -83,7 +83,7 @@ public class FPSInput : MonoBehaviour
             
             Vector3 desiredMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized * speed;
             
-            velocity = Vector3.Lerp(velocity, desiredMove, accelFactor);
+            velocity = Vector3.Lerp(velocity, desiredMove, accelFactor * Time.deltaTime);
             
             _charController.Move(velocity * Time.deltaTime); //Last line of code related to regular movement
 
