@@ -20,16 +20,16 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*
-        if (other.TryGetComponent(out Player p))
+        
+        if (other.TryGetComponent(out PlayerCharacter p))
         {
-            Player.Damage(Damage);
+            p.Hurt(Damage);
         }
-        */
+        
 
         if (other.TryGetComponent(out Enemy e))
         {
-            e.Damage(Damage);
+            e.Hurt(Damage);
         }
     }
 }

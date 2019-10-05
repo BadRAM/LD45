@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
-    private int _health;
+    private float _health;
     private bool _hasItem;
     private bool _audioPlay;
     private int _killCount;
@@ -18,7 +18,7 @@ public class PlayerCharacter : MonoBehaviour {
         
 	}
 
-    public void Hurt(int damage) // allows the player to take damage
+    public void Hurt(float damage) // allows the player to take damage
     {
         _health -= damage;
         if(_health < 0)
@@ -28,7 +28,7 @@ public class PlayerCharacter : MonoBehaviour {
         Debug.Log("Health: " + _health);
     }
 
-    public int Health() //returns the value of health since its a private int
+    public float Health() //returns the value of health since its a private int
     {
         return _health;
     }
@@ -108,7 +108,7 @@ public class PlayerCharacter : MonoBehaviour {
         PlayerPrefs.SetFloat("player_x", transform.position.x);
         PlayerPrefs.SetFloat("player_y", transform.position.y);
         PlayerPrefs.SetFloat("player_z", transform.position.z);
-        PlayerPrefs.SetInt("_health", _health);
+        PlayerPrefs.SetFloat("_health", _health);
         PlayerPrefs.SetInt("_killCount", _killCount);
         PlayerPrefs.SetString("_hasItem", _hasItem.ToString());
     }

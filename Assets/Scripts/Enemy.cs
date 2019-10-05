@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
         _agent.SetDestination(_playerPos);
     }
 
-    public void Damage(float damageTaken)
+    public void Hurt(float damageTaken)
     {
         Health -= damageTaken;
         if (Health <= 0)
