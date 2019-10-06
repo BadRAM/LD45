@@ -217,8 +217,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc69a90179129c640ba707ec41bc7559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 762031836}
+  maxDistance: 3
+  scaleFactor: 0.5
   lookAt: {fileID: 1674421644}
+  castPlane: {fileID: 0}
+  smooth: 1
 --- !u!1 &848430488
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,16 +421,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2479616082993897160, guid: dcc61d2188737f3498b4c93d1b7d071b,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2479616082993897160, guid: dcc61d2188737f3498b4c93d1b7d071b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 2479616082993897156, guid: dcc61d2188737f3498b4c93d1b7d071b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -483,6 +476,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2479616082993897160, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479616082993897160, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2479616082993897155, guid: dcc61d2188737f3498b4c93d1b7d071b,
         type: 3}
       propertyPath: mainCamera
@@ -492,6 +495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479616082993897155, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: accelFactor
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2479616082993897153, guid: dcc61d2188737f3498b4c93d1b7d071b, type: 3}
