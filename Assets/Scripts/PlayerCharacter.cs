@@ -7,9 +7,10 @@ public class PlayerCharacter : MonoBehaviour {
     private bool _hasItem;
     private bool _audioPlay;
     private int _killCount;
-
+    private int activeGun = 0;
 	void Start ()
     {
+        activeGun = 0;
         GameInfo.Player = this;
         //_health = 10;
         //_hasItem = false;
@@ -31,12 +32,25 @@ public class PlayerCharacter : MonoBehaviour {
     {
         return _health;
     }
-    
+
+  
     public void RestoreHealth(int amount)
     {
         _health += amount;
         Debug.Log("Health: " + _health);
     }
+
+    public void ChangetoGun(int gunNum)
+    {
+        activeGun = gunNum;
+        Debug.Log("1=revover, 2=shotgun, 3=flamethrower Gun Type: " + gunNum);
+    }
+
+    public int returnGunType() //returns the value of health since its a private int
+    {
+        return activeGun;
+    }
+
     public void ResetHealth() //set player health back to 5
     {
         _health = 10;
