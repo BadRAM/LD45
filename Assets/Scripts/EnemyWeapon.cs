@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class EnemyWeapon : MonoBehaviour
 {
-    [SerializeField] private GameObject projectile;
-
-    public void Fire(Vector3 target)
+    // Start is called before the first frame update
+    void Start()
     {
-        Instantiate(projectile, transform.position,
-            Quaternion.LookRotation(target - transform.position, transform.up));
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
