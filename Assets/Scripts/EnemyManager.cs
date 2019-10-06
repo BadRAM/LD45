@@ -31,7 +31,7 @@ public class EnemyManager : MonoBehaviour
             for (int i = 0; i < Waves[0].Number; i++)
             {
                 Vector2 spot = SpawnRadius * Random.insideUnitCircle;
-                Vector3 pos = transform.position + new Vector3(spot.x, spot.y, Random.Range(0, SpawnHeight));
+                Vector3 pos = transform.position + new Vector3(spot.x, Random.Range(0, SpawnHeight), spot.y);
                 Instantiate(Waves[0].EnemyType, pos, Quaternion.identity);
             }
 

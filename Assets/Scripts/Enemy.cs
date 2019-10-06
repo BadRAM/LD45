@@ -27,11 +27,6 @@ public class Enemy : MonoBehaviour
         _AI = GetComponent<EnemyAI>();
         _agent = GetComponent<NavMeshAgent>();
         //_agent.enabled = false;
-
-        if (!GameInfo.Enemies.Contains(GetComponent<Enemy>()))
-        {
-            GameInfo.Enemies.Add(GetComponent<Enemy>());
-        }
     }
 
     private void FixedUpdate()
@@ -44,6 +39,11 @@ public class Enemy : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, 1, transform.position.z);
                 _agent.enabled = true;
                 _falling = false;
+                
+                if (!GameInfo.Enemies.Contains(GetComponent<Enemy>()))
+                {
+                    GameInfo.Enemies.Add(GetComponent<Enemy>());
+                }
             }
         }
         else if (Health > 0)
