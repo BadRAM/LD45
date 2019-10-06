@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
-    private float _health;
+    [SerializeField] private float _health = 10;
     private bool _hasItem;
     private bool _audioPlay;
     private int _killCount;
 
-	void Start () {
-
-            _health = 10;
-            _hasItem = false;
-            _audioPlay = false;
-            _killCount = 0;
-        
-        
-	}
+	void Start ()
+    {
+        GameInfo.Player = this;
+        //_health = 10;
+        //_hasItem = false;
+        //_audioPlay = false;
+        //_killCount = 0;
+    }
 
     public void Hurt(float damage) // allows the player to take damage
     {
