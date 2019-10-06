@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
     
     void Start()
     {
-        _playerTransform = GameObject.FindWithTag("Player").transform;
+        _playerTransform = GameInfo.Player.transform;
         _weapon = GetComponent<EnemyWeapon>();
         _agent = GetComponent<NavMeshAgent>();
     }
@@ -46,8 +46,15 @@ public class EnemyAI : MonoBehaviour
         _fireHeat = Mathf.Max(0, _fireHeat - Time.deltaTime);
     }
 
-    protected void _fire()
+    protected bool _fire()
     {
-        _weapon.Fire(_playerTransform.position);
+        return _weapon.Fire(_playerTransform.position);
+    }
+    
+    protected void runAway()
+    {
+        Vector3 targetPos = (transform.position - _playerTransform.transform.position).normalized * 2;
+        
+        _agent.SetDestination(transform.position + targetPos);
     }
 }

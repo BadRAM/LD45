@@ -14,13 +14,16 @@ public class EnemyWeapon : MonoBehaviour
         heat = Mathf.Max(0, heat - Time.deltaTime);
     }
 
-    public virtual void Fire(Vector3 target)
+    
+    public virtual bool Fire(Vector3 target) // returns true if shot fired successfully.
     {
         if (heat == 0)
         {
             Instantiate(projectile, transform.position,
                 Quaternion.LookRotation(target - transform.position, transform.up));
             heat = cooldown;
+            return true;
         }
+        return false;
     }
 }

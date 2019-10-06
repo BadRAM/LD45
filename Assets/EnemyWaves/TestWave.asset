@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271d170cbd5e6b24fb04986af073cff3, type: 3}
   m_Name: TestWave
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 5320850263050402372, guid: e87bec009f6d36445aeab85a4d0316c3,
-    type: 3}
+  EnemyType: {fileID: 86055941992417225, guid: 2158998e13a4ee14eb431288e5d24e87, type: 3}
   Number: 15
   Time: 1

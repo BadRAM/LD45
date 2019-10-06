@@ -53,13 +53,4 @@ public class EnemyAICluster : EnemyAI
             
         enemyDistances = enemyDistances.OrderBy(x => x.Value).ToList();
     }
-
-    private void runAway()
-    {
-        Vector3 targetPos = (transform.position - GameInfo.Player.transform.position).normalized * 2;
-        
-        _agent.SetDestination(transform.position + targetPos);
-        
-        Debug.DrawLine(transform.position, transform.position + targetPos, Color.red);
-    }
 }
