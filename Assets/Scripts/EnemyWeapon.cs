@@ -1,18 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyWeapon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private float cooldown;
+    private float heat;
+
+    private void FixedUpdate()
     {
-        
+        heat = Mathf.Max(0, heat - Time.deltaTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Fire(Vector3 target)
     {
-        
+        if (heat == 0)
+        {
+            Instantiate(projectile, transform.position,
+                Quaternion.LookRotation(target - transform.position, transform.up));
+        }
     }
 }

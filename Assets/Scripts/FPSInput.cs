@@ -9,11 +9,13 @@ using System.Collections;
 public class FPSInput : MonoBehaviour
 {
     //This set of public variables is for movement speed
-    public float speed = 10.0f;
+    public float speed = 100.0f;
     float stopspeed = 0;// do not touch, responsible for stopping player
     float maxspeed = 10; // how fast to move
     float acceleration = 10; //how long to get to max speed
     float deceleration = 10; //how long to get speed of 0
+    private Vector3 velocity;
+    [SerializeField] private float accelFactor = 0.1f;
     
 
 
@@ -47,39 +49,26 @@ public class FPSInput : MonoBehaviour
         // should this be in FixedUpdate?
         if (_canMove == true)
         {
-            Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-            float rayLength;
-            if (groundPlane.Raycast(cameraRay, out rayLength))
-            {
-                Vector3 pointToLook = cameraRay.GetPoint(rayLength);
-                Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
-
-              //  transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
-            }
+            /*
             //Start of block of code related to regular movement
-            float h = height;
+            //float h = height;
             
-            stopspeed = stopspeed - acceleration * Time.deltaTime;
-            if ((Input.GetAxis("Horizontal") > 0f) && (stopspeed < maxspeed))
-            {
-                stopspeed = stopspeed - acceleration * Time.deltaTime;
+            //stopspeed = stopspeed - acceleration * Time.deltaTime;
+            //if ((Input.GetAxis("Horizontal") > 0f) && (stopspeed < maxspeed))
+            //{
+            //    stopspeed = stopspeed - acceleration * Time.deltaTime;
 
-            }
+            //}
+            
+            //float deltaX = Input.GetAxis("Horizontal") * speed;
+            //float deltaZ = Input.GetAxis("Vertical") * speed;
 
-
-    //        float deltaX = Input.GetAxis("Horizontal") * speed;
-  //          float deltaZ = Input.GetAxis("Vertical") * speed;
-
-
-
-
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
+            //          float horizontal = Input.GetAxis("Horizontal");
+//            float vertical = Input.GetAxis("Vertical");
 
 
 
-//            Vector3 movement = new Vector3(deltaX, 0, deltaZ);
+           Vector3 movement = new Vector3(deltaX, 0, deltaZ);
           //  Vector3 movement = new Vector3(horizontal*speed*Time.deltaTime, 0, transform.Translate("");
 
             movement = Vector3.ClampMagnitude(movement, speed);
@@ -89,15 +78,20 @@ public class FPSInput : MonoBehaviour
             movement *= Time.deltaTime;
 
             movement = transform.TransformDirection(movement);
-
+            */
             
-            _charController.Move(movement); //Last line of code related to regular movement
+            
+            Vector3 desiredMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized * speed;
+            
+            velocity = Vector3.Lerp(velocity, desiredMove, accelFactor * Time.deltaTime);
+            
+            _charController.Move(velocity * Time.deltaTime); //Last line of code related to regular movement
 
             //Start of block of code related to running
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 isRunning = true;
-                speed = runSpeed; //When holding W and Shift, it changed the speed value to the run speed value to make the char move faster
+                speed = runSpeed; //When holding Shift, it changed the speed value to the run speed value to make the char move faster
             }
             else
             {
@@ -117,6 +111,11 @@ public class FPSInput : MonoBehaviour
         {
             _canMove = true;
         }
+    }
+
+    public void SetMove(bool move)
+    {
+        _canMove = move;
     }
 
 
