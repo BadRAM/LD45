@@ -33,9 +33,12 @@ public class WeaponSwitching : MonoBehaviour {
         {
             SelectWeapon();
         }*/
-
+        
         selectedWeapon = _playerGun.returnGunType();
         SelectWeapon();
+        Debug.Log("ammoleft = " + _playerGun.returnAmmoLeft());
+
+
     }
     void SelectWeapon()
     {
