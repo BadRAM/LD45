@@ -22,7 +22,7 @@ public class EnemyAICluster : EnemyAI
         }
         else if (_targetAlly == null || Vector3.Distance(_targetAlly.position, transform.position) < nearThresh)
         {
-            scanAllies();
+            enemyDistances = scanAllies();
             
             if (enemyDistances[requiredFlock - 1].Value < nearThresh)
             {
@@ -38,19 +38,5 @@ public class EnemyAICluster : EnemyAI
         {
             _agent.SetDestination(_targetAlly.position);
         }
-    }
-
-    private void scanAllies()
-    {
-        enemyDistances = new List<KeyValuePair<Enemy, float>>();
-        
-        foreach (Enemy e in GameInfo.Enemies)
-        {
-            enemyDistances.Add(new KeyValuePair<Enemy, float>(e, Vector3.Distance(e.transform.position, transform.position)));
-        }
-        
-        enemyDistances.Remove(new KeyValuePair<Enemy, float>(GetComponent<Enemy>(), 0f));
-            
-        enemyDistances = enemyDistances.OrderBy(x => x.Value).ToList();
     }
 }

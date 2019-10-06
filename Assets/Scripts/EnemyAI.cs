@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -56,5 +57,24 @@ public class EnemyAI : MonoBehaviour
         Vector3 targetPos = (transform.position - _playerTransform.transform.position).normalized * 2;
         
         _agent.SetDestination(transform.position + targetPos);
+    }
+    
+    protected List<KeyValuePair<Enemy, float>> scanAllies()
+    {
+        List<KeyValuePair<Enemy, float>> enemyDistances = new List<KeyValuePair<Enemy, float>>();
+        
+        foreach (Enemy e in GameInfo.Enemies)
+        {
+            enemyDistances.Add(new KeyValuePair<Enemy, float>(e, Vector3.Distance(e.transform.position, transform.position)));
+        }
+        
+        enemyDistances.Remove(new KeyValuePair<Enemy, float>(GetComponent<Enemy>(), 0f));
+            
+        return enemyDistances.OrderBy(x => x.Value).ToList();
+    }
+    
+    public virtual int getFlip()
+    {
+        return 1;
     }
 }

@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
     [SerializeField] private float _health = 10;
+    [SerializeField] private Canvas PauseMenu;
     private bool _hasItem;
     private bool _audioPlay;
     private int _killCount;
@@ -12,12 +14,21 @@ public class PlayerCharacter : MonoBehaviour {
 
 	void Start ()
     {
+        PauseMenu.enabled = false;
         activeGun = 0;
         GameInfo.Player = this;
         //_health = 10;
         //_hasItem = false;
         //_audioPlay = false;
         //_killCount = 0;
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Pause"))
+        {
+            TogglePause();
+        }
     }
 
     public void Hurt(float damage) // allows the player to take damage
@@ -147,5 +158,19 @@ public class PlayerCharacter : MonoBehaviour {
         PlayerPrefs.SetFloat("_health", _health);
         PlayerPrefs.SetInt("_killCount", _killCount);
         PlayerPrefs.SetString("_hasItem", _hasItem.ToString());
+    }
+
+    public void TogglePause()
+    {
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            PauseMenu.enabled = true;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            PauseMenu.enabled = false;
+        }
     }
 }

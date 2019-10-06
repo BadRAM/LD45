@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271d170cbd5e6b24fb04986af073cff3, type: 3}
   m_Name: Wave2
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 0}
-  Number: 0
+  EnemyType: {fileID: 3257250918967102386, guid: 8ee75c0ebbfbf7647abdaa663070930f,
+    type: 3}
+  Number: 10
   Time: 0

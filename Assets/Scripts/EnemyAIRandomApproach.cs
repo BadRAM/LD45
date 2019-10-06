@@ -13,6 +13,7 @@ public class EnemyAIRandomApproach : EnemyAI
     [SerializeField] private float fearThreshold = 3;
     private int _shotqueue;
     private float _moveTime;
+    private bool _moving;
     private bool _retreating;
     private Vector3 _moveDir;
 
@@ -26,7 +27,7 @@ public class EnemyAIRandomApproach : EnemyAI
                 _shotqueue -= 1;
             }
         }
-        else if (_moveTime == 0)
+        else if (!_moving)
         {
             // invert the reflect check if player is too close
             bool fear = Vector3.Distance(_playerTransform.position, transform.position) < fearThreshold;
@@ -40,16 +41,18 @@ public class EnemyAIRandomApproach : EnemyAI
             }
             _moveDir = dir3;
             _moveTime = Random.Range(minMoveTime, maxMoveTime);
+            _moving = true;
         }
         else
         {
             if (_moveTime == 0)
             {
                 _shotqueue = Random.Range(minShots, maxShots);
+                _moving = false;
             }
             else
             {
-                _moveTime = Mathf.Max(0, _moveTime - Time.time);
+                _moveTime = Mathf.Max(0, _moveTime - Time.deltaTime);
             }
             _agent.SetDestination(transform.position + _moveDir);
         }
