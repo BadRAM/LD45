@@ -8,6 +8,8 @@ public class PlayerCharacter : MonoBehaviour {
     private bool _audioPlay;
     private int _killCount;
     private int activeGun = 0;
+    private int ammoleft = 0;
+
 	void Start ()
     {
         activeGun = 0;
@@ -44,11 +46,32 @@ public class PlayerCharacter : MonoBehaviour {
     {
         activeGun = gunNum;
         Debug.Log("1=revover, 2=shotgun, 3=flamethrower Gun Type: " + gunNum);
+
+        switch(gunNum)
+        {
+            case 1: ammoleft = 100000;
+                break;
+            case 2: ammoleft = 10;
+                break;
+            case 3: ammoleft = 100;
+                break;
+        }
+
     }
 
     public int returnGunType() //returns the value of health since its a private int
     {
         return activeGun;
+    }
+
+    public int returnAmmoLeft() //returns the value of ammo since its a private int
+    {
+        return ammoleft;
+    }
+
+    public void useOneAmmo()
+    {
+        ammoleft--;
     }
 
     public void ResetHealth() //set player health back to 5
