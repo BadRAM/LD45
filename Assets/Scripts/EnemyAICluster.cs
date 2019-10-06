@@ -9,21 +9,42 @@ public class EnemyAICluster : EnemyAI
     // otherwise it will path towards the second nearest enemy.
     
     [SerializeField] private float nearThresh = 5;
-    [SerializeField] private int requiredFlock = 3;
+    [SerializeField] private int requiredFlock = 2;
+    private Transform _targetAlly;
     
     public override void AiBehavior()
     {
-        List<KeyValuePair<Enemy, float>> enemyDistances =new List<KeyValuePair<Enemy, float>>();
-        foreach (Enemy e in GameInfo.Enemies)
+        if (_targetAlly == null || Vector3.Distance(_targetAlly.position, transform.position) < nearThresh
+            || Vector3.Distance(transform.position, GameInfo.Player.transform.position) < nearThresh)
         {
-            enemyDistances.Add(new KeyValuePair<Enemy, float>(e, Vector3.Distance(e.transform.position, transform.position)));
-        }
-
-        var sortedDict = from entry in enemyDistances orderby entry.Value ascending select entry;
+            List<KeyValuePair<Enemy, float>> enemyDistances =new List<KeyValuePair<Enemy, float>>();
+            foreach (Enemy e in GameInfo.Enemies)
+            {
+                enemyDistances.Add(new KeyValuePair<Enemy, float>(e, Vector3.Distance(e.transform.position, transform.position)));
+            }
         
-        if (enemyDistances[requiredFlock].Value < nearThresh)
+            enemyDistances.Remove(new KeyValuePair<Enemy, float>(GetComponent<Enemy>(), 0f));
+            
+            enemyDistances = enemyDistances.OrderBy(x => x.Value).ToList();
+
+            if (enemyDistances.Count >= requiredFlock)
+            {
+                _agent.SetDestination(transform.position);
+                _fire();
+            }
+            else if (enemyDistances[requiredFlock - 1].Value < nearThresh)
+            {
+                _agent.SetDestination(transform.position);
+                _fire();
+            }
+            else
+            {
+                _targetAlly = enemyDistances[requiredFlock - 1].Key.transform;
+            }
+        }
+        else
         {
-            _fire();
+            _agent.SetDestination(_targetAlly.position);
         }
     }
 }

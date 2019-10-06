@@ -20,6 +20,7 @@ public class EnemyWeapon : MonoBehaviour
         {
             Instantiate(projectile, transform.position,
                 Quaternion.LookRotation(target - transform.position, transform.up));
+            heat = cooldown;
         }
     }
 }

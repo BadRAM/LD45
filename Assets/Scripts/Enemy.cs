@@ -28,9 +28,9 @@ public class Enemy : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         //_agent.enabled = false;
 
-        if (!GameInfo.Enemies.Contains(this))
+        if (!GameInfo.Enemies.Contains(GetComponent<Enemy>()))
         {
-            GameInfo.Enemies.Add(this);
+            GameInfo.Enemies.Add(GetComponent<Enemy>());
         }
     }
 
