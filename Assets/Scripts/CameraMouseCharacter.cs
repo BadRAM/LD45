@@ -21,6 +21,7 @@ public class CameraMouseCharacter : MonoBehaviour
         defaultOffset = transform.localPosition;
         transform.parent = null;
         camera = GetComponent<Camera>();
+        GameInfo.Camera = this;
     }
 
 
