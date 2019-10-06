@@ -9,6 +9,25 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private GameObject projectileShotgun; //shotgun
     [SerializeField] private GameObject projectileFlamethrower; //flamethrower
 
+
+    //begin shotgun logic
+    public int pelletCount;
+    public float spreadAngle;
+    
+    public GameObject pellet;
+    public Transform BarrelExit;
+    List<Quaternion> pellets;
+
+    private void Awake()
+    {
+        pellets = new List<Quaternion>(pelletCount);
+        for(int i = 0; i<pelletCount; i++)
+        {
+            pellets.Add(Quaternion.Euler(Vector3.zero));
+        }
+    }
+
+
     private GameObject _player; //GameObject variable to grab the object with Player tag
     private PlayerCharacter _playerGun; //Instance of PlayerCharacter so we can directly see what guntype they got and change it
 
@@ -34,7 +53,9 @@ public class PlayerWeapon : MonoBehaviour
                         _playerGun.useOneAmmo();
                         break;
                     case 2:
-                        Instantiate(projectile, transform.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up)); //SHOTGUN PROJECTILE CHANGE NEEDED
+                        fireSG();
+                     //   Instantiate(projectile, transform.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up)); //SHOTGUN PROJECTILE CHANGE NEEDED
+
                         _playerGun.useOneAmmo();
                         break;
                     case 3:
@@ -51,6 +72,20 @@ public class PlayerWeapon : MonoBehaviour
             }
 
 
+
+        }
+    }
+    void fireSG()
+    {
+        for (int i = 0; i < pelletCount; i++)
+        {
+            //pellets[i] = Random.rotation;
+
+            pellets[i] = Quaternion.Euler(Random.Range(0, 90),0,0);
+            // GameObject p = Instantiate(projectile, BarrelExit.position, BarrelExit.rotation);
+
+            GameObject p = Instantiate(projectile, BarrelExit.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - BarrelExit.position, transform.up));
+            p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, pellets[i], spreadAngle);
 
         }
     }
