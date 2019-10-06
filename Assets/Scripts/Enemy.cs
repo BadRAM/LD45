@@ -9,13 +9,16 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField] private float Health;
+    [SerializeField] private float DeathDuration;
+    private float _timeOfDeath;
     private EnemyWeapon _weapon;
     private EnemyAI _AI;
     private Transform _playerTransform;
     private NavMeshAgent _agent;
     [SerializeField]private GameObject disableOnDeath;
     [SerializeField]private GameObject enableOnDeath;
-    private bool falling = true;
+    private bool _falling = true;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -33,21 +36,23 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (falling)
+        if (_falling)
         {
             transform.position += Vector3.down * Time.deltaTime * 5;
             if (transform.position.y < 1)
             {
                 transform.position = new Vector3(transform.position.x, 1, transform.position.z);
-                //Vector3 pos = transform.position;
                 _agent.enabled = true;
-                //_agent.Warp(pos);
-                falling = false;
+                _falling = false;
             }
         }
         else if (Health > 0)
         {
             _AI.AiBehavior();
+        }
+        else if (Time.time - _timeOfDeath > DeathDuration)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -60,8 +65,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
+        Health = 0;
+        _timeOfDeath = Time.time;
         GameInfo.Enemies.Remove(this);
         disableOnDeath.SetActive(false);
         enableOnDeath.SetActive(true);
