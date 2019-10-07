@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject MachinegunEnemy;
     private int _machinegunStatus;
     private float _startTime;
+    [SerializeField] private string winScreenName;
     
     
     // Start is called before the first frame update
@@ -29,6 +31,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_revolverStatus == -1 &&
+            _shotgunStatus == -1 &&
+            _flamethrowerStatus == -1 &&
+            _machinegunStatus == -1)
+        {
+            SceneManager.LoadSceneAsync(winScreenName);
+        }
+        
         if (Time.time - _startTime > startDelay)
         {
             int[] t = tally();

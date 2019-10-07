@@ -47,5 +47,9 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else
+        {
+            GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * 0.9f;
+        }
     }
 }

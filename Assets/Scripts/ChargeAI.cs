@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class ChargeAI : EnemyAI
 {
+    private float _detoTimer;
+    
     public override void AiBehavior()
     {
-        _agent.SetDestination(_playerTransform.position);
-        if (Vector3.Distance(_playerTransform.position, transform.position) < 1.5f)
+        if (Vector3.Distance(_playerTransform.position, transform.position) < 2f)
         {
-            _fire();
+            _agent.SetDestination(transform.position);
+            _detoTimer += Time.deltaTime;
+            if (_detoTimer > 0.5)
+            {
+                _fire();
+            }
+        }
+        else
+        {
+            _agent.SetDestination(_playerTransform.position);
+            _detoTimer = 0;
         }
     }
 }

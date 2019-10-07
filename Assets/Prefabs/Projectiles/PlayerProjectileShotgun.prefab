@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5165125041356127622}
   - component: {fileID: 6037024707016226093}
   m_Layer: 9
-  m_Name: PlayerProjectile
+  m_Name: PlayerProjectileShotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,9 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b8a238b567a5644826dde45f59ecf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 25
   Damage: 1
-  Duration: 60
+  Duration: 0.75
+  Persist: 0
 --- !u!54 &6037024707016226093
 Rigidbody:
   m_ObjectHideFlags: 0
