@@ -22,7 +22,8 @@ public class AudioManager : MonoBehaviour {
     private void Start()
     {
 
-        Play("MainTheme");
+        Play("ambientclock");
+        Play("ambientwind");
     }
     public void Play (string name)
     {

@@ -25,7 +25,7 @@ public class FPSInput : MonoBehaviour
     private Animator ani;
 
     private GameObject physicalChar;
-
+    public Camera mainCamera;
     private float _tackleTimer;
     [SerializeField] private float tackleDuration;
     [SerializeField] private float tackleRecharge;
@@ -62,7 +62,7 @@ public class FPSInput : MonoBehaviour
         // should this be in FixedUpdate?
         if (_canMove == true)
         {
-
+     
             if (Input.GetKeyDown(KeyCode.W) && GameInfo.Player.returnGunType() == 0) { ani.Play("runningnowep"); }
             if (Input.GetKeyDown(KeyCode.A) && GameInfo.Player.returnGunType() == 0) { ani.Play("runningnowep"); }
             if (Input.GetKeyDown(KeyCode.S) && GameInfo.Player.returnGunType() == 0) { ani.Play("runningnowep"); }
@@ -73,7 +73,7 @@ public class FPSInput : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.S) && GameInfo.Player.returnGunType() != 0) { ani.Play("runrightgun"); }
             if (Input.GetKeyDown(KeyCode.D) && GameInfo.Player.returnGunType() != 0) { ani.Play("runbackgun"); }
 
-
+            
             _tackleTimer = Mathf.Max(0, _tackleTimer - Time.deltaTime);
             if (_tackleTimer >= tackleRecharge)
             {
@@ -89,9 +89,20 @@ public class FPSInput : MonoBehaviour
 
                 _charController.Move(velocity * Time.deltaTime); //Last line of code related to regular movement
                                                                  // ani.Play("runningnowep");
-                //physicalChar.transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+                                                                 //physicalChar.transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
 
-              //  physicalChar.transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+                //  physicalChar.transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+                Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+                Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+                float rayLength;
+
+                if (groundPlane.Raycast(cameraRay, out rayLength))
+                {
+                    Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+                    Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+
+                     transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+                }
 
                 //_camera.GetMouseCastPos()
 

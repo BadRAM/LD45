@@ -78,7 +78,9 @@ public class PlayerWeapon : MonoBehaviour
             Instantiate(projectileRevolver, transform.position, 
                 Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up));
             _heat = RevolverCoolDown;
+            FindObjectOfType<AudioManager>().Play("revolvershot");
         }
+
     }
     
     
@@ -97,6 +99,7 @@ public class PlayerWeapon : MonoBehaviour
                 
                 Instantiate(projectileShotgun, transform.position, AimAngle);
             }
+            FindObjectOfType<AudioManager>().Play("shotgunshot");
         }
     }
 
@@ -107,6 +110,7 @@ public class PlayerWeapon : MonoBehaviour
             Instantiate(projectileFlamethrower, transform.position, 
                 Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up));
             _heat = FlamethrowerCoolDown;
+            FindObjectOfType<AudioManager>().Play("shotgunshot");
         }
     }
 
@@ -117,6 +121,7 @@ public class PlayerWeapon : MonoBehaviour
             Instantiate(projectileMachinegun, transform.position, 
                 Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up));
             _heat = MachineGunCoolDown;
+            FindObjectOfType<AudioManager>().Play("machinegunshot");
         }
     }
 }

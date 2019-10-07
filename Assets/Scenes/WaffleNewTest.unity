@@ -1406,8 +1406,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1701057540, guid: dcc61d2188737f3498b4c93d1b7d071b, type: 3}
       propertyPath: activeGun
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2479616082993897155, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1549263756}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcc61d2188737f3498b4c93d1b7d071b, type: 3}
 --- !u!1 &1511417000 stripped
@@ -1554,6 +1559,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1472864426}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &1549263756 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 963194227, guid: dcc61d2188737f3498b4c93d1b7d071b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1472864426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1549263757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,6 +1583,54 @@ MonoBehaviour:
     volume: 0.318
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: PickupGun
+    clip: {fileID: 8300000, guid: d3c1372c4c656c04daf00a1a011ebd8e, type: 3}
+    volume: 0.311
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: machinegunshot
+    clip: {fileID: 8300000, guid: 7c55d456f303801449ebfd071a68c495, type: 3}
+    volume: 0.239
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: revolvershot
+    clip: {fileID: 8300000, guid: bc2564f4766417845b0d2fa5948014e5, type: 3}
+    volume: 0.311
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: shotgunshot
+    clip: {fileID: 8300000, guid: d57f24e30b26fc24bae1b33c2815f2e9, type: 3}
+    volume: 0.311
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: uibutton
+    clip: {fileID: 8300000, guid: 6b7bec14ad9828949a1fb9dcfc286294, type: 3}
+    volume: 0.868
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ambientclock
+    clip: {fileID: 8300000, guid: c8932445559047e4bac51d1be4a728e1, type: 3}
+    volume: 0.436
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ambientwind
+    clip: {fileID: 8300000, guid: 753f918c7abc2e444a22305dfeb96f44, type: 3}
+    volume: 0.56
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: flamethrowershoot
+    clip: {fileID: 8300000, guid: 59299ab0a3a2ff44080bbdbbc1fae3e7, type: 3}
+    volume: 0.095
+    pitch: 0.1
+    loop: 0
     source: {fileID: 0}
   - name: PickupGun
     clip: {fileID: 8300000, guid: d3c1372c4c656c04daf00a1a011ebd8e, type: 3}
