@@ -49,7 +49,7 @@ public class PlayerWeapon : MonoBehaviour
                 switch(_playerGun.returnGunType())
                 {
                     case 1:
-                        Instantiate(projectile, transform.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up)); //REGULAR REVOLVER PROJECTILE
+                        Instantiate(projectile, transform.position, Quaternion.LookRotation(GameInfo.Camera.GetMouseCastPos() - transform.position, transform.up)); //REGULAR REVOLVER PROJECTILE
                         _playerGun.useOneAmmo();
                         break;
                     case 2:
@@ -59,7 +59,7 @@ public class PlayerWeapon : MonoBehaviour
                         _playerGun.useOneAmmo();
                         break;
                     case 3:
-                        Instantiate(projectile, transform.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up)); //FLAMETHROWER PROJECTILE CHANGE NEEDED
+                        Instantiate(projectile, transform.position, Quaternion.LookRotation(GameInfo.Camera.GetMouseCastPos() - transform.position, transform.up)); //FLAMETHROWER PROJECTILE CHANGE NEEDED
                         _playerGun.useOneAmmo();
                         break;
                 }
@@ -81,12 +81,12 @@ public class PlayerWeapon : MonoBehaviour
         {
             //pellets[i] = Random.rotation;
 
-            pellets[i] = Quaternion.Euler(Random.Range(0, 90),0,0);
+            pellets[i] = Quaternion.Euler(Random.Range(0,90),0,0);
             // GameObject p = Instantiate(projectile, BarrelExit.position, BarrelExit.rotation);
 
-            GameObject p = Instantiate(projectile, BarrelExit.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - BarrelExit.position, transform.up));
+            GameObject p = Instantiate(projectile, BarrelExit.position, Quaternion.LookRotation(GameInfo.Camera.GetMouseCastPos() - BarrelExit.position, transform.up));
             p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, pellets[i], spreadAngle);
-
+          //  p.transform.
         }
     }
 }
