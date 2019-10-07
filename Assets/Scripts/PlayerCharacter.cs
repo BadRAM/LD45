@@ -54,6 +54,10 @@ public class PlayerCharacter : MonoBehaviour {
 
     public void ChangetoGun(int gunNum)
     {
+        if (gunNum != 0)
+        {
+            GameInfo.EnemySpawner.SetActiveWeapon(gunNum);
+        }
         activeGun = gunNum;
         Debug.Log("1=revover, 2=shotgun, 3=flamethrower 4=machinegun Gun Type: " + gunNum);
     }

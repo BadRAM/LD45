@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.38268274, y: -0, z: -0, w: 0.9238798}
-  m_LocalPosition: {x: 0, y: 15, z: -15}
+  m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2479616082993897156}
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbfa305d5c5a4840973d18326537b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 10
   accelFactor: 5
   tackleDuration: 0.1
   tackleRecharge: 1
@@ -717,7 +717,7 @@ MonoBehaviour:
   FlamethrowerCoolDown: 0.05
   projectileMachinegun: {fileID: 2157578850830449105, guid: 0291ce713bae36846ba802a89ab82fdb,
     type: 3}
-  MachineGunCoolDown: 0.2
+  MachineGunCoolDown: 0.1
   pelletCount: 5
   spreadAngle: 3
 --- !u!114 &1701057540
@@ -734,6 +734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   PauseMenu: {fileID: 3665740591425388509}
+  activeGun: 0
 --- !u!1 &2563988889523185686
 GameObject:
   m_ObjectHideFlags: 0

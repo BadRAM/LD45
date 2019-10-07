@@ -39,6 +39,8 @@ public class FPSInput : MonoBehaviour
 
     void Update()
     {
+        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+        
         // should this be in FixedUpdate?
         if (_canMove == true)
         {

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 20
-  Damage: 1
+  Damage: 0.5
   Duration: 30
   Persist: 0
 --- !u!54 &8582488835809540799

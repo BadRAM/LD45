@@ -315,6 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 259983540}
   - component: {fileID: 259983539}
+  - component: {fileID: 259983541}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -329,7 +330,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259983538}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5e1883dcd619184986030827b79d6fe, type: 3}
   m_Name: 
@@ -355,6 +356,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259983541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259983538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccab2f1f0d031f544a4787ff731e689e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDelay: 5
+  spawnRadius: 35
+  spawnHeight: 10
+  spawnQuota: 10
+  RevolverEnemy: {fileID: 86055941992417225, guid: 2158998e13a4ee14eb431288e5d24e87,
+    type: 3}
+  ShotgunEnemy: {fileID: 3257250918967102386, guid: 8ee75c0ebbfbf7647abdaa663070930f,
+    type: 3}
+  FlamethrowerEnemy: {fileID: 6373180480028197762, guid: d64a02236bbad16468f9347277ba88a0,
+    type: 3}
+  MachinegunEnemy: {fileID: 287991579747180582, guid: f7a7d0ec697bfad4591339a09c000141,
+    type: 3}
 --- !u!1 &461777873
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,8 +498,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578510436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 80, y: 1, z: 80}
+  m_LocalPosition: {x: 0, y: -1.3, z: 0}
+  m_LocalScale: {x: 72, y: 0.9, z: 72}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1151,10 +1176,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1701057540, guid: dcc61d2188737f3498b4c93d1b7d071b, type: 3}
-      propertyPath: activeGun
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2479616082993897160, guid: dcc61d2188737f3498b4c93d1b7d071b,
         type: 3}
       propertyPath: m_Name
@@ -2801,7 +2822,7 @@ ParticleSystem:
     enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 5
       minScalar: -5
       maxCurve:
@@ -2854,7 +2875,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -2907,7 +2928,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: -16
       minScalar: -8
       maxCurve:
@@ -6305,7 +6326,7 @@ Transform:
   m_GameObject: {fileID: 438045930380860879}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 2.1, z: 0}
-  m_LocalScale: {x: 3.8956, y: 3.8956, z: 3.8956}
+  m_LocalScale: {x: 3.5886269, y: 3.5886269, z: 3.5886269}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5

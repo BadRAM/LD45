@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
         _AI = GetComponent<EnemyAI>();
         _agent = GetComponent<NavMeshAgent>();
         //_agent.enabled = false;
+        GameInfo.Enemies.Add(this);
     }
 
     private void FixedUpdate()
