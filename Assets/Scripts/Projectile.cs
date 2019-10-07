@@ -38,10 +38,9 @@ public class Projectile : MonoBehaviour
             p.Hurt(Damage);
         }
         
-
-        if (other.transform.parent.TryGetComponent(out Enemy e))
+        if (other.CompareTag("Enemy"))
         {
-            e.Hurt(Damage);
+            other.GetComponentInParent<Enemy>().Hurt(Damage);
         }
 
         if (!Persist)

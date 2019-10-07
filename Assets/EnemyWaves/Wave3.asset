@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyType: {fileID: 6373180480028197762, guid: d64a02236bbad16468f9347277ba88a0,
     type: 3}
-  Number: 0
+  Number: 10
   Time: 0

@@ -9,13 +9,12 @@ public class PlayerCharacter : MonoBehaviour {
     private bool _hasItem;
     private bool _audioPlay;
     private int _killCount;
-    private int activeGun = 0;
+    [SerializeField] private int activeGun = 0;
     private int ammoleft = 0;
 
 	void Start ()
     {
         PauseMenu.enabled = false;
-        activeGun = 0;
         GameInfo.Player = this;
         //_health = 10;
         //_hasItem = false;

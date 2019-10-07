@@ -71,10 +71,11 @@ public class FPSInput : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (_tackleTimer >= tackleRecharge && /*hit.transform.CompareTag("Enemy") &&*/ GameInfo.Player.returnGunType() == 0)
+        
+        if (_tackleTimer >= tackleRecharge && hit.transform.parent.CompareTag("Enemy") && GameInfo.Player.returnGunType() == 0)
         {
-            hit.collider.transform.GetComponent<Enemy>().Die();
-            GetComponent<PlayerCharacter>().ChangetoGun(hit.transform.GetComponent<Enemy>().WeaponDropID);
+            hit.transform.parent.GetComponent<Enemy>().Die();
+            GetComponent<PlayerCharacter>().ChangetoGun(hit.transform.parent.GetComponent<Enemy>().WeaponDropID);
         }
     }
 

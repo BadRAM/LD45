@@ -41,9 +41,9 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _heat = Mathf.Min(0, _heat - Time.deltaTime);
+        _heat = Mathf.Max(0, _heat - Time.deltaTime);
         
-        if (Input.GetButtonDown("Fire1") && _playerGun.returnGunType() == 1)
+        if (Input.GetButtonDown("Fire1"))
         {
             switch (_playerGun.returnGunType())
             {
@@ -56,7 +56,7 @@ public class PlayerWeapon : MonoBehaviour
             }
         }
         
-        if (Input.GetButton("Fire1")) //FIRE GUN MECHANICS. CHANGE PROJECTILE ONLY HERE AND HOW U FIRE
+        if (Input.GetButton("Fire1"))
         {
             switch (_playerGun.returnGunType())
             {
@@ -83,6 +83,7 @@ public class PlayerWeapon : MonoBehaviour
     
     private void fireSG()
     {
+        Debug.Log("fired shotgun");
         if (_heat == 0)
         {
             for (int i = 0; i < pelletCount; i++)
