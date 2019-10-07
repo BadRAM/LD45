@@ -9,9 +9,20 @@ public class EnemyAIMoveAndShoot : EnemyAI
     [SerializeField] private float maxDistance;
     [SerializeField] private float minDistance;
     private int _flip = 1;
-    
+
+    protected override void Start()
+    {
+        base.Start();
+        _flip = Random.Range(0, 1);
+        if (_flip == 0)
+        {
+            _flip = -1;
+        }
+    }
+
     public override void AiBehavior()
     {
+        /*
         int tally = 0;
         foreach (var e in GameInfo.Enemies)
         {
@@ -26,6 +37,7 @@ public class EnemyAIMoveAndShoot : EnemyAI
         {
             _flip = -1;
         }
+        */
 
         Vector3 pdir = (_playerTransform.position - transform.position).normalized; // direction to player.
 
@@ -39,6 +51,7 @@ public class EnemyAIMoveAndShoot : EnemyAI
         {
             moveDir += pdir * -1;
         }
+
 
         _agent.SetDestination(transform.position + moveDir);
 

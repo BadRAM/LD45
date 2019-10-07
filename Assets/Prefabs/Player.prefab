@@ -703,10 +703,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileRevolver: {fileID: 4120146506533533251, guid: c559b23749243454a824200be73f68a4,
     type: 3}
-  RevolverCoolDown: 0.5
+  RevolverCoolDown: 0.3
   projectileShotgun: {fileID: 4120146506533533251, guid: d29be6db2e581e245b78d4b4a5aa7419,
     type: 3}
-  ShotgunCoolDown: 0.5
+  ShotgunCoolDown: 0.3
   projectileFlamethrower: {fileID: 4120146506533533251, guid: 126ac222856306e42a12c54625301e48,
     type: 3}
   FlamethrowerCoolDown: 0.05
@@ -1325,7 +1325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65a8dd036027744b9f6ffa14df7a65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneToLoad: PhieMenu
+  SceneToLoad: 0
 --- !u!1 &9007418030377882938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,11 +1686,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1868895801}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 24c0604c778ea454e81aa3a60312030f,
-        type: 3}
-      propertyPath: m_Name
-      value: Pistol
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 24c0604c778ea454e81aa3a60312030f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1761,6 +1756,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 24c0604c778ea454e81aa3a60312030f,
+        type: 3}
+      propertyPath: m_Name
+      value: Pistol
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24c0604c778ea454e81aa3a60312030f, type: 3}
 --- !u!4 &117855806554415903 stripped
@@ -1776,11 +1776,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1080648890}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: bdc7f263e1892ae4cb840d536e950db3,
-        type: 3}
-      propertyPath: m_Name
-      value: Shotgun
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bdc7f263e1892ae4cb840d536e950db3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1850,6 +1845,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: bdc7f263e1892ae4cb840d536e950db3,
+        type: 3}
+      propertyPath: m_Name
+      value: Shotgun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdc7f263e1892ae4cb840d536e950db3, type: 3}

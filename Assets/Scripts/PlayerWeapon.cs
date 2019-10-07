@@ -100,6 +100,7 @@ public class PlayerWeapon : MonoBehaviour
                 Instantiate(projectileShotgun, transform.position, AimAngle);
             }
             FindObjectOfType<AudioManager>().Play("shotgunshot");
+            _heat = ShotgunCoolDown;
         }
     }
 

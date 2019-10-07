@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
@@ -20,6 +21,8 @@ public class EnemySpawner : MonoBehaviour
     private int _machinegunStatus;
     private float _startTime;
     [SerializeField] private string winScreenName;
+    [SerializeField] private AudioMixer Mixer;
+    private float winTimer;
     
     
     // Start is called before the first frame update
@@ -36,7 +39,11 @@ public class EnemySpawner : MonoBehaviour
             _flamethrowerStatus == -1 &&
             _machinegunStatus == -1)
         {
-            SceneManager.LoadSceneAsync(winScreenName);
+            winTimer += Time.deltaTime;
+            if (winTimer > 3)
+            {
+                SceneManager.LoadSceneAsync(winScreenName, LoadSceneMode.Single);
+            }
         }
         
         if (Time.time - _startTime > startDelay)
@@ -51,6 +58,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 _revolverStatus = -1;
                 GameInfo.Player.ChangetoGun(0);
+                Mixer.SetFloat("Layer1", -80);
             }
             
             
@@ -62,6 +70,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 _shotgunStatus = -1;
                 GameInfo.Player.ChangetoGun(0);
+                Mixer.SetFloat("Layer2", -80);
             }
             
             
@@ -73,6 +82,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 _flamethrowerStatus = -1;
                 GameInfo.Player.ChangetoGun(0);
+                Mixer.SetFloat("Layer3", -80);
             }
             
             
@@ -84,6 +94,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 _machinegunStatus = -1;
                 GameInfo.Player.ChangetoGun(0);
+                Mixer.SetFloat("Layer4", -80);
             }
         }
     }

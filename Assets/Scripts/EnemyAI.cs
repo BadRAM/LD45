@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
 
     // default EnemyAI moves towards the player and shoots at the same time. stops within 5m.
     
-    void Start()
+    protected virtual void Start()
     {
         _playerTransform = GameInfo.Player.transform;
         _weapon = GetComponent<EnemyWeapon>();
