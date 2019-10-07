@@ -24,7 +24,7 @@ public class FPSInput : MonoBehaviour
 
     private Animator ani;
 
-
+    private GameObject physicalChar;
 
     private float _tackleTimer;
     [SerializeField] private float tackleDuration;
@@ -40,6 +40,8 @@ public class FPSInput : MonoBehaviour
         _charController = GetComponent<CharacterController>();
         hitbox = GetComponent<Collider>();
         hitbox.enabled = false;
+
+        physicalChar = GameObject.FindGameObjectWithTag("ANIMATOR");
     }
 
     void Update()
@@ -76,6 +78,7 @@ public class FPSInput : MonoBehaviour
             if (_tackleTimer >= tackleRecharge)
             {
                 _charController.Move(_tackleDir * tackleSpeed * Time.deltaTime);
+
             }
             else
             {
@@ -85,8 +88,13 @@ public class FPSInput : MonoBehaviour
                 velocity = Vector3.Lerp(velocity, desiredMove, accelFactor * Time.deltaTime);
 
                 _charController.Move(velocity * Time.deltaTime); //Last line of code related to regular movement
-               // ani.Play("runningnowep");
-              
+                                                                 // ani.Play("runningnowep");
+                //physicalChar.transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+
+              //  physicalChar.transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+
+                //_camera.GetMouseCastPos()
+
                 //Start of block of code related to running
                 if (Input.GetButtonDown("Fire1") &&
                     GetComponent<PlayerCharacter>().returnGunType() == 0 &&
