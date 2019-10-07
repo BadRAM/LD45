@@ -22,6 +22,10 @@ public class FPSInput : MonoBehaviour
 
     private CharacterController _charController;
 
+    private Animator ani;
+
+
+
     private float _tackleTimer;
     [SerializeField] private float tackleDuration;
     [SerializeField] private float tackleRecharge;
@@ -32,6 +36,7 @@ public class FPSInput : MonoBehaviour
 
     void Start()
     {
+        ani = GameObject.FindGameObjectWithTag("ANIMATOR").GetComponent<Animator>();
         _charController = GetComponent<CharacterController>();
         hitbox = GetComponent<Collider>();
         hitbox.enabled = false;
@@ -40,10 +45,33 @@ public class FPSInput : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(transform.position.x, 1, transform.position.z);
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("dance1");
+            ani.Play("dance1");
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("dance2");
+            ani.Play("dance2");
+        }
+
+
         // should this be in FixedUpdate?
         if (_canMove == true)
         {
+
+            if (Input.GetKeyDown(KeyCode.W) && GameInfo.Player.returnGunType() == 0) { ani.Play("runningnowep"); }
+            if (Input.GetKeyDown(KeyCode.A) && GameInfo.Player.returnGunType() == 0) { ani.Play("runningnowep"); }
+            if (Input.GetKeyDown(KeyCode.S) && GameInfo.Player.returnGunType() == 0) { ani.Play("runningnowep"); }
+            if (Input.GetKeyDown(KeyCode.D) && GameInfo.Player.returnGunType() == 0) { ani.Play("runningnowep"); }
+
+            if (Input.GetKeyDown(KeyCode.W) && GameInfo.Player.returnGunType() != 0) { ani.Play("runforwardgun"); }
+            if (Input.GetKeyDown(KeyCode.A) && GameInfo.Player.returnGunType() != 0) { ani.Play("runleftgun"); }
+            if (Input.GetKeyDown(KeyCode.S) && GameInfo.Player.returnGunType() != 0) { ani.Play("runrightgun"); }
+            if (Input.GetKeyDown(KeyCode.D) && GameInfo.Player.returnGunType() != 0) { ani.Play("runbackgun"); }
+
+
             _tackleTimer = Mathf.Max(0, _tackleTimer - Time.deltaTime);
             if (_tackleTimer >= tackleRecharge)
             {
@@ -57,12 +85,14 @@ public class FPSInput : MonoBehaviour
                 velocity = Vector3.Lerp(velocity, desiredMove, accelFactor * Time.deltaTime);
 
                 _charController.Move(velocity * Time.deltaTime); //Last line of code related to regular movement
-
+               // ani.Play("runningnowep");
+              
                 //Start of block of code related to running
                 if (Input.GetButtonDown("Fire1") &&
                     GetComponent<PlayerCharacter>().returnGunType() == 0 &&
                     _tackleTimer == 0)
                 {
+                 //   ani.Play("gunplay");
                     _tackleDir = (GameInfo.Camera.GetMouseCastPos() - transform.position).normalized;
                     _tackleTimer = tackleDuration + tackleRecharge;
                     velocity = Vector3.zero;

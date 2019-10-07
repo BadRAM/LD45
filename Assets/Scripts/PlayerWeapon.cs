@@ -48,6 +48,7 @@ public class PlayerWeapon : MonoBehaviour
             switch (_playerGun.returnGunType())
             {
                 case 1:
+                  //  ani.Play("gunplay");
                     fireRevolver();
                     break;
                 case 2:
