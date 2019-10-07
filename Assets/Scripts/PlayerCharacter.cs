@@ -56,18 +56,7 @@ public class PlayerCharacter : MonoBehaviour {
     public void ChangetoGun(int gunNum)
     {
         activeGun = gunNum;
-        Debug.Log("1=revover, 2=shotgun, 3=flamethrower Gun Type: " + gunNum);
-
-        switch(gunNum)
-        {
-            case 1: ammoleft = 100000;
-                break;
-            case 2: ammoleft = 10;
-                break;
-            case 3: ammoleft = 100;
-                break;
-        }
-
+        Debug.Log("1=revover, 2=shotgun, 3=flamethrower 4=machinegun Gun Type: " + gunNum);
     }
 
     public int returnGunType() //returns the value of health since its a private int

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 86055941992417231}
   m_Layer: 11
   m_Name: RandomApproachEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 5
+  WeaponDropID: 1
   DeathDuration: 0
   disableOnDeath: {fileID: 7272658112449678860}
   enableOnDeath: {fileID: 8698078098374138087}

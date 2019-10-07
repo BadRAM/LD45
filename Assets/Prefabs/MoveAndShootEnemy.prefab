@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3257250918967102388}
   m_Layer: 11
   m_Name: MoveAndShootEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 5
+  WeaponDropID: 2
   DeathDuration: 0
   disableOnDeath: {fileID: 5253452389380342391}
   enableOnDeath: {fileID: 6102492851167188124}

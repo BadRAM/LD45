@@ -329,13 +329,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259983538}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5e1883dcd619184986030827b79d6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Waves:
+  - {fileID: 11400000, guid: b194d4c5accdfcb40bb77f560c0d0f93, type: 2}
   - {fileID: 11400000, guid: 1a8b2e16536f94f428cc39442e93ee1b, type: 2}
+  - {fileID: 11400000, guid: e08d9a6fc0f03dd4585368dc787808a8, type: 2}
+  - {fileID: 11400000, guid: 538473088d81fe2469005d16b71482e3, type: 2}
   SpawnRadius: 39
   SpawnHeight: 5
 --- !u!4 &259983540
@@ -1087,7 +1090,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_SizeDelta: {x: 2000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1385604141
 MonoBehaviour:
@@ -1353,6 +1356,60 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479616082993897159, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724347517635124210, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: projectileRevolver
+      value: 
+      objectReference: {fileID: 4120146506533533251, guid: c559b23749243454a824200be73f68a4,
+        type: 3}
+    - target: {fileID: 8724347517635124210, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: projectileFlamethrower
+      value: 
+      objectReference: {fileID: 4120146506533533251, guid: 126ac222856306e42a12c54625301e48,
+        type: 3}
+    - target: {fileID: 8724347517635124210, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: projectileShotgun
+      value: 
+      objectReference: {fileID: 4120146506533533251, guid: d29be6db2e581e245b78d4b4a5aa7419,
+        type: 3}
+    - target: {fileID: 8724347517635124210, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: projectileMachinegun
+      value: 
+      objectReference: {fileID: 2157578850830449105, guid: 0291ce713bae36846ba802a89ab82fdb,
+        type: 3}
+    - target: {fileID: 8724347517635124210, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: ShotgunCoolDown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724347517635124210, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: FlamethrowerCoolDown
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724347517635124210, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: MachineGunCoolDown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724347517635124210, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: pelletCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724347517635124210, guid: dcc61d2188737f3498b4c93d1b7d071b,
+        type: 3}
+      propertyPath: spreadAngle
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcc61d2188737f3498b4c93d1b7d071b, type: 3}
@@ -6477,7 +6534,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1952182310007ec45a7e40f2f69446a9, type: 2}
+  - {fileID: 2100000, guid: 25d6c2655f26e7c4ba19036fedf9651b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

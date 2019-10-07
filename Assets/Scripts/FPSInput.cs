@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 // basic WASD-style movement control
@@ -17,86 +18,63 @@ public class FPSInput : MonoBehaviour
     private Vector3 velocity;
     [SerializeField] private float accelFactor = 0.1f;
     
-    public float runSpeed = 15.0f;
-    public float normalSpeed = 6.0f;
-
     private bool _canMove = true;
 
     private CharacterController _charController;
 
     private float _tackleTimer;
+    [SerializeField] private float tackleDuration;
+    [SerializeField] private float tackleRecharge;
+    [SerializeField] private float tackleSpeed;
     private Vector3 _tackleDir;
+    
+    private Collider hitbox;
 
     void Start()
     {
         _charController = GetComponent<CharacterController>();
+        hitbox = GetComponent<Collider>();
+        hitbox.enabled = false;
     }
 
     void Update()
     {
-        
         // should this be in FixedUpdate?
         if (_canMove == true)
         {
-            /*
-            //Start of block of code related to regular movement
-            //float h = height;
-            
-            //stopspeed = stopspeed - acceleration * Time.deltaTime;
-            //if ((Input.GetAxis("Horizontal") > 0f) && (stopspeed < maxspeed))
-            //{
-            //    stopspeed = stopspeed - acceleration * Time.deltaTime;
-
-            //}
-            
-            //float deltaX = Input.GetAxis("Horizontal") * speed;
-            //float deltaZ = Input.GetAxis("Vertical") * speed;
-
-            //          float horizontal = Input.GetAxis("Horizontal");
-//            float vertical = Input.GetAxis("Vertical");
-
-
-
-           Vector3 movement = new Vector3(deltaX, 0, deltaZ);
-          //  Vector3 movement = new Vector3(horizontal*speed*Time.deltaTime, 0, transform.Translate("");
-
-            movement = Vector3.ClampMagnitude(movement, speed);
-
-            movement.y = gravity;
-
-            movement *= Time.deltaTime;
-
-            movement = transform.TransformDirection(movement);
-            */
-            
-            
-            Vector3 desiredMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized * speed;
-            
-            velocity = Vector3.Lerp(velocity, desiredMove, accelFactor * Time.deltaTime);
-            
-            _charController.Move(velocity * Time.deltaTime); //Last line of code related to regular movement
-
-            //Start of block of code related to running
-            if (Input.GetButtonDown("Fire1"))
+            _tackleTimer = Mathf.Max(0, _tackleTimer - Time.deltaTime);
+            if (_tackleTimer >= tackleRecharge)
             {
-                if (GetComponent<PlayerCharacter>().returnGunType() == 0)
-                {
-                    //_tackleDir = 
-                }
-            }
-            
-            /*
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                isRunning = true;
-                speed = runSpeed; //When holding Shift, it changed the speed value to the run speed value to make the char move faster
+                _charController.Move(_tackleDir * tackleSpeed * Time.deltaTime);
             }
             else
             {
-                isRunning = false;
-                speed = normalSpeed; //When holding any other combos of keys, the speed value is set to the normal speed value
+                Vector3 desiredMove =
+                    new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized * speed;
+
+                velocity = Vector3.Lerp(velocity, desiredMove, accelFactor * Time.deltaTime);
+
+                _charController.Move(velocity * Time.deltaTime); //Last line of code related to regular movement
+
+                //Start of block of code related to running
+                if (Input.GetButtonDown("Fire1") &&
+                    GetComponent<PlayerCharacter>().returnGunType() == 0 &&
+                    _tackleTimer == 0)
+                {
+                    _tackleDir = (GameInfo.Camera.GetMouseCastPos() - transform.position).normalized;
+                    _tackleTimer = tackleDuration + tackleRecharge;
+                    velocity = Vector3.zero;
+                }
             }
-            */
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (_tackleTimer >= tackleRecharge && /*hit.transform.CompareTag("Enemy") &&*/ GameInfo.Player.returnGunType() == 0)
+        {
+            hit.collider.transform.GetComponent<Enemy>().Die();
+            GetComponent<PlayerCharacter>().ChangetoGun(hit.transform.GetComponent<Enemy>().WeaponDropID);
         }
     }
 

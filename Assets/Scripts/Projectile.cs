@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float Damage;
     private Rigidbody _rigidbody;
     [SerializeField] private float Duration;
+    [SerializeField] private bool Persist;
     private float _startTime;
     
     
@@ -29,7 +30,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         
         if (other.TryGetComponent(out PlayerCharacter p))
@@ -42,7 +43,10 @@ public class Projectile : MonoBehaviour
         {
             e.Hurt(Damage);
         }
-        
-        Destroy(gameObject);
+
+        if (!Persist)
+        {
+            Destroy(gameObject);
+        }
     }
 }

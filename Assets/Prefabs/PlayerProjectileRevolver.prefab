@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5165125041356127622}
   - component: {fileID: 6037024707016226093}
   m_Layer: 9
-  m_Name: PlayerProjectileFlamethrower
+  m_Name: PlayerProjectileRevolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,9 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b8a238b567a5644826dde45f59ecf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 20
   Damage: 1
-  Duration: 60
+  Duration: 30
   Persist: 0
 --- !u!54 &6037024707016226093
 Rigidbody:
@@ -120,7 +120,7 @@ Rigidbody:
   m_GameObject: {fileID: 4120146506533533251}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.5
+  m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0

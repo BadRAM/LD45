@@ -5,29 +5,28 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     private CameraMouseCharacter _camera;
-    [SerializeField] private GameObject projectile; //revolver
+    [SerializeField] private GameObject projectileRevolver; //revolver
+    [SerializeField] private float RevolverCoolDown;
     [SerializeField] private GameObject projectileShotgun; //shotgun
+    [SerializeField] private float ShotgunCoolDown;
     [SerializeField] private GameObject projectileFlamethrower; //flamethrower
+    [SerializeField] private float FlamethrowerCoolDown;
+    [SerializeField] private GameObject projectileMachinegun; // salty gun
+    [SerializeField] private float MachineGunCoolDown;
+
+    private float _heat;
 
 
     //begin shotgun logic
     public int pelletCount;
     public float spreadAngle;
     
-    public GameObject pellet;
-    public Transform BarrelExit;
-    List<Quaternion> pellets;
 
     private void Awake()
     {
-        pellets = new List<Quaternion>(pelletCount);
-        for(int i = 0; i<pelletCount; i++)
-        {
-            pellets.Add(Quaternion.Euler(Vector3.zero));
-        }
+        
     }
-
-
+    
     private GameObject _player; //GameObject variable to grab the object with Player tag
     private PlayerCharacter _playerGun; //Instance of PlayerCharacter so we can directly see what guntype they got and change it
 
@@ -42,51 +41,81 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) //FIRE GUN MECHANICS. CHANGE PROJECTILE ONLY HERE AND HOW U FIRE
+        _heat = Mathf.Min(0, _heat - Time.deltaTime);
+        
+        if (Input.GetButtonDown("Fire1") && _playerGun.returnGunType() == 1)
         {
-            if (_playerGun.returnAmmoLeft() > 0)// make sure u got ammo before firing
+            switch (_playerGun.returnGunType())
             {
-                switch(_playerGun.returnGunType())
-                {
-                    case 1:
-                        Instantiate(projectile, transform.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up)); //REGULAR REVOLVER PROJECTILE
-                        _playerGun.useOneAmmo();
-                        break;
-                    case 2:
-                        fireSG();
-                     //   Instantiate(projectile, transform.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up)); //SHOTGUN PROJECTILE CHANGE NEEDED
-
-                        _playerGun.useOneAmmo();
-                        break;
-                    case 3:
-                        Instantiate(projectile, transform.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up)); //FLAMETHROWER PROJECTILE CHANGE NEEDED
-                        _playerGun.useOneAmmo();
-                        break;
-                }
-                
+                case 1:
+                    fireRevolver();
+                    break;
+                case 2:
+                    fireSG();
+                    break;
             }
-           else
+        }
+        
+        if (Input.GetButton("Fire1")) //FIRE GUN MECHANICS. CHANGE PROJECTILE ONLY HERE AND HOW U FIRE
+        {
+            switch (_playerGun.returnGunType())
             {
-                //swap back to revolver
-                _playerGun.ChangetoGun(1);
+                case 3:
+                    fireFlamethrower();
+                    break;
+                case 4:
+                    fireMachinegun();
+                    break;
             }
-
-
-
         }
     }
-    void fireSG()
+
+    private void fireRevolver()
     {
-        for (int i = 0; i < pelletCount; i++)
+        if (_heat == 0)
         {
-            //pellets[i] = Random.rotation;
+            Instantiate(projectileRevolver, transform.position, 
+                Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up));
+            _heat = RevolverCoolDown;
+        }
+    }
+    
+    
+    private void fireSG()
+    {
+        if (_heat == 0)
+        {
+            for (int i = 0; i < pelletCount; i++)
+            {
+                Vector2 r = Random.insideUnitCircle;
+                Vector3 r3 = new Vector3(r.x, 0, r.y) * spreadAngle;
+                Quaternion AimAngle = Quaternion.LookRotation(
+                    (_camera.GetMouseCastPos() - transform.position).normalized * 10 + r3, 
+                    transform.up);
+                
+                Instantiate(projectileShotgun, transform.position, AimAngle);
+            }
+        }
+    }
 
-            pellets[i] = Quaternion.Euler(Random.Range(0, 90),0,0);
-            // GameObject p = Instantiate(projectile, BarrelExit.position, BarrelExit.rotation);
+    private void fireFlamethrower()
+    {
+        if (_heat == 0)
+        {
+            Instantiate(projectileFlamethrower, transform.position, 
+                Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up));
+            _heat = FlamethrowerCoolDown;
+        }
+    }
 
-            GameObject p = Instantiate(projectile, BarrelExit.position, Quaternion.LookRotation(_camera.GetMouseCastPos() - BarrelExit.position, transform.up));
-            p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, pellets[i], spreadAngle);
-
+    private void fireMachinegun()
+    {
+        if (_heat == 0)
+        {
+            Instantiate(projectileMachinegun, transform.position, 
+                Quaternion.LookRotation(_camera.GetMouseCastPos() - transform.position, transform.up));
+            _heat = MachineGunCoolDown;
         }
     }
 }
+

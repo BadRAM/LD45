@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 287991579747180576}
   m_Layer: 11
   m_Name: FlockEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 5
+  WeaponDropID: 4
   DeathDuration: 0
   disableOnDeath: {fileID: 7359780890333571555}
   enableOnDeath: {fileID: 8825747188204535560}

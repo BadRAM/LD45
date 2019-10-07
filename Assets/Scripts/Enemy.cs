@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField] private float Health;
+    public int WeaponDropID;
     [SerializeField] private float DeathDuration;
     private float _timeOfDeath;
     private EnemyWeapon _weapon;
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]private GameObject disableOnDeath;
     [SerializeField]private GameObject enableOnDeath;
     private bool _falling = true;
-    
+
 
     // Start is called before the first frame update
     void Start()
